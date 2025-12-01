@@ -19,40 +19,40 @@ const int LED_PIN = 2;
 
 
 
-void setMotor(int enPin, int in1Pin, int in2Pin, bool forward) {
+void setMotor(int enPin, int in1Pin, int in2Pin, bool isHighLow) {
   // 1. Set Direction
-  if (forward) {
-    digitalWrite(in1Pin, HIGH);
+  if (isHighLow) {
+    digitalWrite(in1Pin, HIGH); // Pin 1 is HIGH, Pin 2 is LOW
     digitalWrite(in2Pin, LOW);
   } else {
-    digitalWrite(in1Pin, LOW);
+    digitalWrite(in1Pin, LOW);  // Pin 1 is LOW, Pin 2 is HIGH
     digitalWrite(in2Pin, HIGH);
   }
-  // 2. Enable Motor: Turn it ON (HIGH = Full Speed)
+  // 2. Enable Motor
   digitalWrite(enPin, HIGH); 
 }
 
 void goForward() {
   digitalWrite(LED_PIN, HIGH); // DEBUG: LED ON
   setMotor(EN_A, IN1, IN2, false); // Left Motor (Forward)
-  setMotor(EN_B, IN3, IN4, true);  // Right Motor (Forward)
+  setMotor(EN_B, IN3, IN4, true);  // Right Motor (Forward) 
 }
 
 void goBackward() {
   digitalWrite(LED_PIN, HIGH); // DEBUG: LED ON
-  setMotor(EN_A, IN1, IN2, true);  // Left Motor (Backward)
+  setMotor(EN_A, IN1, IN2, true);  // Left Motor (Backward) 
   setMotor(EN_B, IN3, IN4, false); // Right Motor (Backward)
 }
 
 void goLeft() {
   digitalWrite(LED_PIN, HIGH); // DEBUG: LED ON
   setMotor(EN_A, IN1, IN2, true);  // Left Motor (Backward for pivot)
-  setMotor(EN_B, IN3, IN4, true);  // Right Motor (Forward for pivot)
+  setMotor(EN_B, IN3, IN4, true);  // Right Motor (Forward for pivot) 
 }
 
 void goRight() {
   digitalWrite(LED_PIN, HIGH); // DEBUG: LED ON
-  setMotor(EN_A, IN1, IN2, false); // Left Motor (Forward for pivot)
+  setMotor(EN_A, IN1, IN2, false); // Left Motor (Forward for pivot) 
   setMotor(EN_B, IN3, IN4, false); // Right Motor (Backward for pivot)
 }
 
